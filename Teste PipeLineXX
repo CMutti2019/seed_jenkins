@@ -1,0 +1,36 @@
+pipelineJob("Teste PipeLineXX") {
+	description()
+	keepDependencies(false)
+	definition {
+		cpsScm {
+"""pipeline {
+    agent any 
+    stages {
+        stage('Build') { 
+            steps {  
+            echo 'Run Build Process '
+            }
+        }
+        stage('Test') { 
+            steps {
+            echo 'Run unit tests and integration tests'
+            }
+        }
+        stage('Deploy') { 
+            steps {
+            echo 'Run Deployment Tasks' 
+            }
+        }
+        
+        stage ('Deploy To Prod'){
+            steps {
+            timeout(time: 1, unit: 'MINUTES') {
+            input message: 'Approve Deploy to Prod' , ok: 'Yes'
+            }
+           }
+        }
+    }
+}"""		}
+	}
+	disabled(false)
+}
