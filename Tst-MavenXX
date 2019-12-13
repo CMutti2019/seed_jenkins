@@ -1,0 +1,7 @@
+job('Tst-MavenXX') {
+    scm {
+        git('https://github.com/CMutti2019/seed_jenkins.git')
+    }
+    steps {
+        maven('-e clean test')
+    }
