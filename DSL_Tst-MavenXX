@@ -1,0 +1,21 @@
+job("Tst-MavenXX") {
+	description()
+	keepDependencies(false)
+	scm {
+		git {
+			remote {
+				github("gabrielf/maven-samples", "https")
+			}
+			branch("*/master")
+		}
+	}
+	disabled(false)
+	concurrentBuild(false)
+	wrappers {
+		preBuildCleanup {
+			deleteDirectories(false)
+			cleanupParameter()
+		}
+		timestamps()
+	}
+}
